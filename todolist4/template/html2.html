@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ToDo App</title>
+		<link rel="stylesheet" href="{% static 'style.css' %}">
+	</head>
+	<body>
+
+		<div class="container">
+			<h1>ADD TODO LIST</h1>
+			<form method="post" action="/">
+				{% csrf_token %}
+			<div id="line"></div>
+			<div class="task-input">
+				<input type="text" id="add-task" name="todo" placeholder="Add Task..." value="">
+				<input type="datetime-local"name="date"><br><br>
+				<input type="text"name="priority" placeholder="priority" value="">
+			</div>
+				<style>
+				.button {
+				background-color: #101820; /* black */
+				outline: #808000 solid 5px;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+				-webkit-transition-duration: 0.4s; /* Safari */
+				transition-duration: 0.4s;
+				}
+				.button2:hover {
+				box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+		 		</style>
+				<button class="button button2">ADD</button>
+
+			<div class="new-tasks">
+				<!--
+				<div class="task">
+					<input type="checkbox" id="complete-task">
+					<input type="text" id="added-task" disabled value='sd'>
+					<input type="button" value="✏️" id="rename-task">
+					<input type="button" value="❌" id="del-task">
+				</div>
+				-->
+			</div>
+			</form>
+		</div>
+		<div class="container">
+			<div class="row">
+				{% for i in a%}
+				<div class="col-md-3">
+					<style>
+					.backgroundGradient {
+					background: linear-gradient(to bottom, white, #808000);
+					color: white;
+					}
+					h3{
+					border: 2px solid black;
+					outline: #808000 solid 5px;
+					margin: auto;
+					padding: 30px;
+					text-align: center;
+					}
+
+					</style>
+
+
+					<div class="card" style="width:16rem;margin-bottom:1.5rem;">
+					<h3 class="card-title" style="color:#ffff;">{{i.name}}<br>priority-{{i.priority}}<br><br>{{i.date}}
+						<style>
+					.backgroundGradient {
+					background: linear-gradient(to bottom, white, #808000);
+					color: white;
+					}
+					h3{
+					border: 2px solid black;
+					outline: #808000 solid 5px;
+					margin: auto;
+					padding: 30px;
+					text-align: center;
+					}
+					.button2:hover {
+					box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+					</style>
+						<br><a href="{% url 'update' i.id %}" class="button button2">update</a><a href="{% url 'delete' i.id %}" class="button button2">Delete</a>
+					</div>
+				</div>
+				{% endfor%}
+			</div>
+		</div>
+
+		<!--<script src="{% static 'index.js' %}"></script>-->
+
+	</body>
+</html>
